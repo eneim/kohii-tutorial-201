@@ -4,8 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil.ItemCallback
 import androidx.recyclerview.widget.ListAdapter
+import kohii.v1.exoplayer.Kohii
 
 class MainAdapter(
+  private val kohii: Kohii,
   diffCallback: ItemCallback<VideoItem>
 ) : ListAdapter<VideoItem, VideoViewHolder>(diffCallback) {
 
@@ -16,6 +18,9 @@ class MainAdapter(
   }
 
   override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
-    // TODO: bind the Video here.
+    val videoItem = getItem(position) ?: return
+    kohii.setUp(videoItem.videoUrl) {
+      tag = "${videoItem.videoUrl}+${position}"
+    }.bind(holder.playerView)
   }
 }

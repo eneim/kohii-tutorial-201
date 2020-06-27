@@ -6,14 +6,19 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import kohii.v1.exoplayer.Kohii
 
 class MainActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
+    val kohii = Kohii[this]
 
     val container: RecyclerView = findViewById(R.id.container)
-    val adapter = MainAdapter(diffCallback = object : DiffUtil.ItemCallback<VideoItem>() {
+    kohii.register(this)
+      .addBucket(container)
+
+    val adapter = MainAdapter(kohii, diffCallback = object : DiffUtil.ItemCallback<VideoItem>() {
       override fun areItemsTheSame(oldItem: VideoItem, newItem: VideoItem): Boolean =
         oldItem === newItem
 
