@@ -7,8 +7,8 @@
     android:background="#ffffff"
     >
 
-  <com.google.android.exoplayer2.ui.PlayerView
-      android:id="@+id/playerView"
+  <FrameLayout
+      android:id="@+id/playerViewContainer"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toTopOf="parent"
@@ -16,6 +16,7 @@
       app:layout_constraintDimensionRatio="16:9"
       android:layout_width="match_parent"
       android:layout_height="0dp"
+      android:background="@color/colorAccent"
       />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
